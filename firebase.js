@@ -4,12 +4,12 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth
 
 // Replace this with YOUR firebaseConfig from Firebase
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT.firebasestorage.app",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey:  "AIzaSyA9apY7hEtT47L-5oJ3mDOrMMabIXK0f0E",
+  authDomain: "puppies-home.firebaseapp.com",
+  projectId: "puppies-home",
+  storageBucket: "puppies-home.firebasestorage.app",
+  messagingSenderId: "45864845436",
+  appId: "1:45864845436:web:187ba9819e68aa977a49f9"
 };
 
 // Initialize Firebase
