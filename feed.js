@@ -6,7 +6,8 @@ import {
   orderBy,
   doc,
   updateDoc,
-  increment
+  increment,
+  arrayUnion
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 async function loadPuppies() {
@@ -29,11 +30,33 @@ async function loadPuppies() {
     <p>${puppy.description}</p>
 
     <div class="buttons">
-      <button class="like-btn" data-id="${puppyId}">
-        ❤️ ${puppy.likes || 0}
-      </button>
-      💬 0
-    </div>
+  <button class="like-btn" data-id="${puppyId}">
+    ❤️ ${puppy.likes || 0}
+  </button>
+
+  <button class="comment-btn" data-id="${puppyId}">
+    💬 ${puppy.comments?.length || 0}
+  </button>
+</div>
+
+<div class="comment-box">
+  <input
+    type="text"
+    class="comment-input"
+    data-id="${puppyId}"
+    placeholder="Write a comment..."
+  >
+
+  <button class="post-comment-btn" data-id="${puppyId}">
+    Post
+  </button>
+</div>
+
+<div class="comments">
+  ${(puppy.comments || [])
+    .map(comment => `<p>💬 ${comment}</p>`)
+    .join("")}
+</div>
 
   </div>
 `;
@@ -52,6 +75,32 @@ const puppyId = button.dataset.id;
   await updateDoc(doc(db, "puppies", puppyId), {
     likes: increment(1)
   });
+
+  loadPuppies();
+});
+document.addEventListener("click", async (e) => {
+  const button = e.target.closest(".post-comment-btn");
+
+  if (!button) return;
+
+  const puppyId = button.dataset.id;
+
+  const input = document.querySelector(
+    `.comment-input[data-id="${puppyId}"]`
+  );
+
+  const comment = input.value.trim();
+
+  if (!comment) {
+    alert("Please enter a comment.");
+    return;
+  }
+
+  await updateDoc(doc(db, "puppies", puppyId), {
+    comments: arrayUnion(comment)
+  });
+
+  input.value = "";
 
   loadPuppies();
 });
