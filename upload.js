@@ -4,7 +4,8 @@ import {
   addDoc,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
+import { getAuth } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+const auth = getAuth();
 const uploadBtn = document.getElementById("uploadBtn");
 
 uploadBtn.addEventListener("click", async () => {
@@ -39,6 +40,7 @@ try {
     console.log(data);
 
   await addDoc(collection(db, "puppies"), {
+    userId: auth.currentUser.uid,
     puppyName: puppyName,
     description: description,
     imageUrl: data.secure_url,
