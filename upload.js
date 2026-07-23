@@ -42,6 +42,7 @@ try {
     puppyName: puppyName,
     description: description,
     imageUrl: data.secure_url,
+    likes: 0,
     createdAt: serverTimestamp()
 });
     alert("Image uploaded successfully!");
