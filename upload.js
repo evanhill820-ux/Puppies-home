@@ -43,6 +43,7 @@ try {
     description: description,
     imageUrl: data.secure_url,
     likes: 0,
+    comments: [],
     createdAt: serverTimestamp()
 });
     alert("Image uploaded successfully!");
