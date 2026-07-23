@@ -1,10 +1,11 @@
 // Import Firebase SDK
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-// Replace this with YOUR firebaseConfig from Firebase
+// Your Firebase config
 const firebaseConfig = {
-  apiKey:  "AIzaSyA9apY7hEtT47L-5oJ3mDOrMMabIXK0f0E",
+  apiKey: "AIzaSyA9apY7hEtT47L-5oJ3mDOrMMabIXK0f0E",
   authDomain: "puppies-home.firebaseapp.com",
   projectId: "puppies-home",
   storageBucket: "puppies-home.firebasestorage.app",
@@ -14,6 +15,12 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+// Authentication
 const auth = getAuth(app);
 
-export { auth };
+// Firestore
+const db = getFirestore(app);
+
+// Export
+export { auth, db };
